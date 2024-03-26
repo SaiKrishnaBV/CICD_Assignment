@@ -68,13 +68,10 @@ jobs:
     - name: Pull Docker Image
       run: docker pull ${{ secrets.DOCKER_USERNAME }}/hematodiagnoser:latest
 
-    - name: Run Docker Image
-      run: docker run ${{ secrets.DOCKER_USERNAME }}/hematodiagnoser:latest
-
-    - name: Check Score
+    - name: Run Docker Image Check Score
       run: |
         # Run the docker image and evaluate if threshold is met
-        score=$(docker run hematodiagnoser:latest)
+        score=$(docker run ${{ secrets.DOCKER_USERNAME }}/hematodiagnoser:latest)
         if (( $(echo "$score > 0.50" | bc -l) )); then
           echo "Score is greater than 0.50"
           exit 0
