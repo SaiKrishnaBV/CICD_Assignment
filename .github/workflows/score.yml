@@ -52,10 +52,15 @@ jobs:
       
       - name: Push Docker Image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/hematodiagnoser:latest
+
+      - name: Report success
+        run: |
+        echo "build job completed successfully"
+        exit 0
     
   pull-and-run:
     runs-on: ubuntu-latest
-    
+    needs: build
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
