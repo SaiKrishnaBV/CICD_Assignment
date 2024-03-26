@@ -55,8 +55,8 @@ jobs:
 
       - name: Report success
         run: |
-        echo "build job completed successfully"
-        exit 0
+          echo "build job completed successfully"
+          exit 0
     
   pull-and-run:
     runs-on: ubuntu-latest
