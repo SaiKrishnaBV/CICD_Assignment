@@ -55,8 +55,7 @@ jobs:
     
   pull-and-run:
     runs-on: ubuntu-latest
-
-    if: ${{ github.event.build.conclusion == 'success' }}
+    
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
