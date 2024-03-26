@@ -48,10 +48,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker Image
-        run: docker build -t hematodiagnoser:latest .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/hematodiagnoser:latest .
       
       - name: Push Docker Image
-        run: docker push hematodiagnoser:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/hematodiagnoser:latest
     
   pull-and-run:
     runs-on: ubuntu-latest
