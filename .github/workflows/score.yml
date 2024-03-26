@@ -48,10 +48,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker Image
-        run: docker build -t HematoDiagnoser:latest .
+        run: docker build -t hematodiagnoser:latest .
       
       - name: Push Docker Image
-        run: docker push HematoDiagnoser:latest
+        run: docker push hematodiagnoser:latest
     
   pull-and-run:
     runs-on: ubuntu-latest
@@ -62,15 +62,15 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Pull Docker Image
-      run: docker pull HematoDiagnoser:latest
+      run: docker pull hematodiagnoser:latest
 
     - name: Run Docker Image
-      run: docker run HematoDiagnoser:latest
+      run: docker run hematodiagnoser:latest
 
     - name: Check Score
       run: |
         # Run the docker image and evaluate if threshold is met
-        score=$(docker run HematoDiagnoser:latest)
+        score=$(docker run hematodiagnoser:latest)
         if (( $(echo "$score > 0.50" | bc -l) )); then
           echo "Score is greater than 0.50"
           exit 0
@@ -78,4 +78,3 @@ jobs:
           echo "Score is not greater than 0.50"
           exit 1
         fi
-
