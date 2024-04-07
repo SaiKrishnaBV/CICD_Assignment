@@ -12,5 +12,5 @@ y = np.array([np.where(labels == x) for x in y]).flatten()
 
 model = GaussianNB().fit(X,y)
 
-with open("model.pkl", 'wb') as f:
+with open("models/model.pkl", 'wb') as f:
     pickle.dump(model, f)
